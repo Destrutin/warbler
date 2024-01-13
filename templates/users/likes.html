@@ -1,0 +1,23 @@
+{% extends 'users/detail.html' %}
+
+{% block user_details %}
+    <ul id="messages">
+        {% for msg in likes %}
+            <li>
+                <a href="/messages/{{ msg.id }}"></a>
+                <a href="/users/{{ msg.user.id}}">
+                    <img src="{{ msg.user.image_url }}" alt="">
+                </a>
+                <div>
+                    <a href="/users/{{ msg.user.id }}">{{ msg.user.username }}</a>
+                    <p>{{ msg.text }}</p>
+                </div>
+                {% if user.id == g.user.id %}
+                <form action="/messages/{{ msg.id }}/like" method="POST">
+                    <button></button>
+                </form>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
